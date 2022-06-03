@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd55d729-920e-48dc-a102-f3fd9a3c460f" name="Changes" comment="" />
+    <list default="true" id="cd55d729-920e-48dc-a102-f3fd9a3c460f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Game-Term-Project/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Game-Term-Project/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Game-Term-Project/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Environment/Sprites/fence.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Environment/Sprites/fence.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Environment/Sprites/house.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Environment/Sprites/house.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Environment/Sprites/tree.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Environment/Sprites/tree.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TrialVersion/Scenes/First.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TrialVersion/Scenes/First.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TrialVersion/Sprites/CustomTiles.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TrialVersion/Sprites/CustomTiles.prefab" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,6 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1653389863839</updated>
       <workItem from="1653389871235" duration="652000" />
+      <workItem from="1654279865831" duration="312000" />
     </task>
     <servers />
   </component>
