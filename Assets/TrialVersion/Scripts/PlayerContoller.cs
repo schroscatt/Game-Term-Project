@@ -7,6 +7,9 @@ public class PlayerContoller : MonoBehaviour
 
     Rigidbody2D body;
 
+    public Transform swingTarget;
+
+    private bool isSwing = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,7 +29,16 @@ public class PlayerContoller : MonoBehaviour
         }
         if (Input.GetButtonDown("Swing"))
         {
+            isSwing = !isSwing;
+            if (isSwing && (transform.position - swingTarget.position).magnitude >= 2f)
+            {
+                isSwing = false;
+            }
+        }
 
+        if (isSwing)
+        {
+            transform.position = swingTarget.position;
         }
        
     }

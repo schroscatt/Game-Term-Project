@@ -19,10 +19,6 @@ public class RopeController : MonoBehaviour
 
 	void Update()
 	{
-		var dist = (gameObject.transform.position - transform.position).magnitude;
-		if (dist < transform.localScale.y / 2f)
-		{
-		}
 
 	}
 
