@@ -7,16 +7,12 @@ using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
-
-    
-    public Transform swingTarget;
-
-    private bool isSwing = false;
-    Rigidbody2D body;
-    BoxCollider2D col;
-    private Vector3 ropeOffset;
+    public bool isSwing = false;
+    public BoxCollider2D col;
     public CompositeCollider2D platform_col;
-
+    public Transform swingTarget;
+    private Vector3 ropeOffset;
+    private Rigidbody2D body;
     
     public PlayerStateMachine StateMachine { get; private set; }
 
@@ -25,8 +21,7 @@ public class Player : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
-
-        
+        StateMachine = GetComponent<PlayerStateMachine>();
     }
 
     // Update is called once per frame
@@ -35,30 +30,22 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         //body.velocity = new Vector2(horizontal * 5f, body.velocity.y);
         
+        float vertical = Input.GetAxis("Vertical");
+
         if (Input.GetButton("Jump"))
         {
             //body.velocity = new Vector2(body.velocity.x, 9f);
 
         }
-
-    }
-
-    private void LateUpdate()
-    {
-        if (Input.GetButtonDown("Swing"))
+        
+        if (Input.GetButton("Swing"))
         {
-            isSwing = !isSwing;
-            if (isSwing && (transform.position - swingTarget.position).magnitude >= 2f)
-            {
-                isSwing = false;
-            }
+            isSwing = false;
+            col.enabled = true;
         }
 
-        if (isSwing)
-        {
-            transform.position = swingTarget.position + ropeOffset;
-        }
     }
+    
 
     public void Jump()
     {
@@ -70,17 +57,11 @@ public class Player : MonoBehaviour
         
     }
 
-    public void Swing()
-    {
-
-    }
-
     public bool IsGrounded()
     {
         bool ret = Physics2D.IsTouching(col, platform_col);
         Debug.Log(ret);
         return ret;
-
     }
     public void AddGravity(float force)
     {
@@ -92,16 +73,33 @@ public class Player : MonoBehaviour
         return body.velocity.y;
     }
 
-    public void OnCollisionEnter2D(Collision2D col)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (col.gameObject.CompareTag("obstacle"))
+        if (collision.gameObject.CompareTag("obstacle"))
         {
             Debug.Log("yandın");
         }
-        if (col.gameObject.CompareTag("rope"))
+        if (collision.gameObject.CompareTag("rope") && StateMachine.CurState == StateMachine.JumpingState)
         {
             ropeOffset = transform.position - swingTarget.position;
             isSwing = true;
+            col.enabled = false;
         }
+    }
+
+    public void Swing()
+    {
+        if (isSwing)
+        {
+            transform.position = swingTarget.position + ropeOffset;
+        }
+    }
+
+    public void Walk()
+    {
+        Vector2 vel = body.velocity;
+        vel.x = StateMachine.CurState.horizontalInput * StateMachine.speed;
+
+        body.velocity = vel;
     }
 }

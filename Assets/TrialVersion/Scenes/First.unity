@@ -151,8 +151,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10828648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.99, y: 4, z: 0}
-  m_LocalScale: {x: 0.05, y: 6, z: 1}
+  m_LocalPosition: {x: 22.99, y: 8.99, z: 0}
+  m_LocalScale: {x: 0.05, y: 13, z: 1}
   m_Children:
   - {fileID: 1499749616}
   m_Father: {fileID: 1008885579}
@@ -2728,6 +2728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerController: {fileID: 1072574832}
+  speed: 0
 --- !u!114 &1072574832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2740,8 +2741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246837281be3a9a4aba1ab9d10ba7965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingTarget: {fileID: 1499749616}
+  isSwing: 0
+  col: {fileID: 0}
   platform_col: {fileID: 20685479}
+  swingTarget: {fileID: 1499749616}
 --- !u!1 &1499749615
 GameObject:
   m_ObjectHideFlags: 0

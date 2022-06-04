@@ -26,10 +26,16 @@ public class PlayerJumpingState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (!verticalInput)
+        if (playerController.IsGrounded())
         {
             Debug.Log("change state");
             stateMachine.ChangeState(stateMachine.IdleState);
+        }
+        
+        if (playerController.isSwing && stateMachine.CurState != stateMachine.SwingState)
+        {
+            Debug.Log("change state");
+            stateMachine.ChangeState(stateMachine.SwingState);
         }
 
     }

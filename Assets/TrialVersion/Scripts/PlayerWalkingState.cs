@@ -4,9 +4,11 @@ public class PlayerWalkingState : PlayerBaseState
 {
     private PlayerStateMachine _sm;
 
+    private Rigidbody2D body;
     public PlayerWalkingState(PlayerStateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
         _sm = stateMachine;
+        body = _sm.GetComponent<Rigidbody2D>();
     }
     public override void Enter()
     {
@@ -29,8 +31,6 @@ public class PlayerWalkingState : PlayerBaseState
     public override void PhysxUpdate()
     {
         base.PhysxUpdate();
-        /*Vector2 vel = _sm.GetComponent<Rigidbody>().velocity;
-        vel.x = _horizontalInput * _sm.speed;
-        _sm.GetComponent<Rigidbody>().velocity = vel;*/
+        playerController.Walk();
     }
 }
