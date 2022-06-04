@@ -40,6 +40,11 @@ public class Player : MonoBehaviour
             //body.velocity = new Vector2(body.velocity.x, 9f);
 
         }
+
+    }
+
+    private void LateUpdate()
+    {
         if (Input.GetButtonDown("Swing"))
         {
             isSwing = !isSwing;
@@ -53,8 +58,8 @@ public class Player : MonoBehaviour
         {
             transform.position = swingTarget.position + ropeOffset;
         }
-       
     }
+
     public void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, 9f);
