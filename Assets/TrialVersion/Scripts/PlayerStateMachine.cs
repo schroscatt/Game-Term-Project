@@ -2,19 +2,42 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    PlayerBaseState curState;
-    PlayerWalkingState walkingState = new PlayerWalkingState();
-    PlayerIdleState idleState = new PlayerIdleState();
-    PlayerJumpingState jumpingState = new PlayerJumpingState();
+    public PlayerBaseState CurState { get; private set; }
+    public Player PlayerController { get; private set; }
 
+    #region State Variables
+    public PlayerIdleState IdleState { get; private set; }
+    public PlayerWalkingState WalkState { get; private set; }
+    public PlayerJumpingState JumpingState { get; private set; }
+    //public PlayerSwingState InAirState { get; private set; }
+    #endregion
     private void Awake()
     {
-        curState = idleState;
-        curState.Enter(this);
+        IdleState = new PlayerIdleState(this, "idle");
+        WalkState = new PlayerWalkingState(this, "walk");
+        JumpingState = new PlayerJumpingState(this, "jump");
+    }
+    void Update()
+    {
+        if (CurState != null)
+            CurState.LogicUpdate();
     }
 
-    private void Update()
+    void LateUpdate()
     {
-        curState.Update(this);
+        if (CurState != null)
+            CurState.PhysxUpdate();
+    }
+    public void Initialize(PlayerBaseState startingState)
+    {
+        CurState = startingState;
+        CurState.Enter();
+    }
+
+    public void ChangeState(PlayerBaseState newState)
+    {
+        CurState.Exit();
+        CurState = newState;
+        CurState.Enter();
     }
 }

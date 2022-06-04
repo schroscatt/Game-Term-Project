@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerBaseState
 {
-    public override void Enter(PlayerStateMachine _manager)
+    public PlayerIdleState(PlayerStateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
-        Debug.Log("idle");
-    }
-    public override void Update(PlayerStateMachine _manager)
-    {
-        Debug.Log("updating");
 
     }
 }
