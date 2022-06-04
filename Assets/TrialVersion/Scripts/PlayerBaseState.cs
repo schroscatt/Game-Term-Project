@@ -2,9 +2,7 @@ using UnityEngine;
 
 public abstract class PlayerBaseState
 {
-   
-
-   
+    
     protected PlayerStateMachine stateMachine;
 
     protected bool isAnimationFinished;

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine.Utility;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +13,7 @@ public class Player : MonoBehaviour
     private bool isSwing = false;
     Rigidbody2D body;
     BoxCollider2D collider;
+    private Vector3 ropeOffset;
 
     
     public PlayerStateMachine StateMachine { get; private set; }
@@ -47,7 +50,7 @@ public class Player : MonoBehaviour
 
         if (isSwing)
         {
-            transform.position = swingTarget.position;
+            transform.position = swingTarget.position + ropeOffset;
         }
        
     }
@@ -81,4 +84,16 @@ public class Player : MonoBehaviour
         return body.velocity.y;
     }
 
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("obstacle"))
+        {
+            Debug.Log("yandın");
+        }
+        if (col.gameObject.CompareTag("rope"))
+        {
+            ropeOffset = transform.position - swingTarget.position;
+            isSwing = true;
+        }
+    }
 }
