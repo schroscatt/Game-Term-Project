@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     public PlayerBaseState CurState { get; private set; }
-    public Player PlayerController { get; private set; }
+    public Player PlayerController;
 
     #region State Variables
     public PlayerIdleState IdleState { get; private set; }
@@ -16,11 +16,17 @@ public class PlayerStateMachine : MonoBehaviour
         IdleState = new PlayerIdleState(this, "idle");
         WalkState = new PlayerWalkingState(this, "walk");
         JumpingState = new PlayerJumpingState(this, "jump");
+        PlayerController = GetComponent<Player>();
+        Initialize(JumpingState);
     }
     void Update()
     {
         if (CurState != null)
+        {
+            CurState.HandleInput();
             CurState.LogicUpdate();
+        }
+            
     }
 
     void LateUpdate()

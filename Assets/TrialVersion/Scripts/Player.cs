@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine.Utility;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class Player : MonoBehaviour
 
     private bool isSwing = false;
     Rigidbody2D body;
-    BoxCollider2D collider;
+    BoxCollider2D col;
     private Vector3 ropeOffset;
+    public CompositeCollider2D platform_col;
 
     
     public PlayerStateMachine StateMachine { get; private set; }
@@ -22,8 +24,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
-        StateMachine = new PlayerStateMachine();
+        col = GetComponent<BoxCollider2D>();
 
         
     }
@@ -32,11 +33,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horizontal * 5f, body.velocity.y);
+        //body.velocity = new Vector2(horizontal * 5f, body.velocity.y);
         
         if (Input.GetButton("Jump"))
         {
-            body.velocity = new Vector2(body.velocity.x, 9f);
+            //body.velocity = new Vector2(body.velocity.x, 9f);
 
         }
         if (Input.GetButtonDown("Swing"))
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour
     }
     public void Jump()
     {
-        body.AddForce(new Vector2(body.velocity.x, 9f));
+        body.velocity = new Vector2(body.velocity.x, 9f);
     }
 
     public void Move()
@@ -71,7 +72,9 @@ public class Player : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.CheckBox(collider.bounds.center, new Vector2(collider.bounds.center.x, collider.bounds.min.y - 0.02f), Quaternion.identity, LayerMask.GetMask("Default"));
+        bool ret = Physics2D.IsTouching(col, platform_col);
+        Debug.Log(ret);
+        return ret;
 
     }
     public void AddGravity(float force)

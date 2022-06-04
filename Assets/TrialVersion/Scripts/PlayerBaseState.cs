@@ -14,11 +14,16 @@ public abstract class PlayerBaseState
 
     protected Player playerController;
 
+    public float horizontalInput;
+    public bool verticalInput;
+
     public PlayerBaseState(PlayerStateMachine stateMachine, string animBoolName)
     {
         this.stateMachine = stateMachine;
         this.animBoolName = animBoolName;
         playerController = stateMachine.PlayerController;
+        horizontalInput = 0.0f;
+        verticalInput = false;
     }
 
     public virtual void Enter()
@@ -39,6 +44,11 @@ public abstract class PlayerBaseState
 
     }
 
+    public virtual void HandleInput()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetButton("Jump");
+    }
     public virtual void PhysxUpdate()
     {
         DoChecks();

@@ -11,16 +11,22 @@ public class PlayerJumpingState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("State : Jump");
 
     }
     public override void Exit()
     {
         base.Exit();
     }
+    public override void HandleInput()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+
+    }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (playerController.IsGrounded() && playerController.GetVerticalVelocity() < 0)
+        if (!verticalInput)
         {
             Debug.Log("change state");
             stateMachine.ChangeState(stateMachine.IdleState);
@@ -31,13 +37,18 @@ public class PlayerJumpingState : PlayerBaseState
     public override void PhysxUpdate()
     {
         base.PhysxUpdate();
-        playerController.Jump();
-        if (playerController.GetVerticalVelocity() < 0) //falling, so accelerate faster for better gamefeel
+        Debug.Log("physx");
+        if (playerController.IsGrounded())
         {
-            playerController.AddGravity(3f);
-        }
-        else
-        {
+            playerController.Jump();
+            /*if (playerController.GetVerticalVelocity() < 0) //falling, so accelerate faster for better gamefeel
+            {
+                playerController.AddGravity(3f);
+            }
+            else
+            {
+                
+            }*/
             playerController.AddGravity(0.5f);
         }
     }    

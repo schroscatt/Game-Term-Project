@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerWalkingState : PlayerBaseState
 {
     private PlayerStateMachine _sm;
-    private float _horizontalInput;
 
     public PlayerWalkingState(PlayerStateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
@@ -12,7 +11,7 @@ public class PlayerWalkingState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        _horizontalInput = 0f;
+        Debug.Log("State : Walking");
     }
     public override void Exit()
     {
@@ -21,16 +20,17 @@ public class PlayerWalkingState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        _horizontalInput = Input.GetAxis("Horizontal");
-        if (Mathf.Abs(_horizontalInput) < Mathf.Epsilon)
+        if (Mathf.Abs(horizontalInput) < Mathf.Epsilon)
             stateMachine.ChangeState(_sm.IdleState);
+        else if (verticalInput)
+            stateMachine.ChangeState(_sm.JumpingState);
     }
 
     public override void PhysxUpdate()
     {
         base.PhysxUpdate();
-        Vector2 vel = _sm.GetComponent<Rigidbody>().velocity;
+        /*Vector2 vel = _sm.GetComponent<Rigidbody>().velocity;
         vel.x = _horizontalInput * _sm.speed;
-        _sm.GetComponent<Rigidbody>().velocity = vel;
+        _sm.GetComponent<Rigidbody>().velocity = vel;*/
     }
 }
