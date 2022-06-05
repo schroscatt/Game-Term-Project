@@ -30,34 +30,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        //body.velocity = new Vector2(horizontal * 5f, body.velocity.y);
-        
-        float vertical = Input.GetAxis("Vertical");
-
-        if (Input.GetButton("Jump"))
-        {
-            //body.velocity = new Vector2(body.velocity.x, 9f);
-
-        }
         
         if (Input.GetButton("Swing"))
         {
             isSwing = false;
             col.enabled = true;
         }
-        
-    }
-    
-    
-
-    public void Jump()
-    {
-        body.velocity = new Vector2(body.velocity.x, 9f);
-    }
-
-    public void Move()
-    {
         
     }
 
@@ -67,10 +45,12 @@ public class Player : MonoBehaviour
         Debug.Log(ret);
         return ret;
     }
+
     public void AddGravity(float force)
     {
         body.AddForce(new Vector3(0, -force, 0));
     }
+
     //converts velocity vector to 2D, then gets its x, which is actually x and z velocities added together.
     public float GetVerticalVelocity()
     {
@@ -105,5 +85,10 @@ public class Player : MonoBehaviour
         vel.x = StateMachine.CurState.horizontalInput * StateMachine.speed;
 
         body.velocity = vel;
+    }
+
+    public void Jump()
+    {
+        body.velocity = new Vector2(body.velocity.x, 9f);
     }
 }
