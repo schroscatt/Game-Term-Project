@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//If we have a stiff rope, such as a metal wire, then we need a simplified solution
-//this is also an accurate solution because a metal wire is not swinging as much as a rope made of a lighter material
 public class RopeController : MonoBehaviour
 {
 	public Transform swingTarget;

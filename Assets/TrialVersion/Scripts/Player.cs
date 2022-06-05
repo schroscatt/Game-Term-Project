@@ -1,25 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine.Utility;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public bool isSwing = false;
     public BoxCollider2D col;
     public CompositeCollider2D platform_col;
-    public Transform swingTarget;
+    public RopeController rope;
     private Vector3 ropeOffset;
     private Rigidbody2D body;
     
     public PlayerStateMachine StateMachine { get; private set; }
 
-    // Start is called before the first frame update
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -27,17 +18,13 @@ public class Player : MonoBehaviour
         StateMachine = GetComponent<PlayerStateMachine>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetButton("Swing"))
         {
-            transform.parent = null;
-            isSwing = false;
             col.enabled = true;
+            isSwing = false;
         }
-        
     }
 
     public bool IsGrounded()
@@ -50,7 +37,6 @@ public class Player : MonoBehaviour
         body.AddForce(new Vector3(0, -force, 0));
     }
 
-    //converts velocity vector to 2D, then gets its x, which is actually x and z velocities added together.
     public float GetVerticalVelocity()
     {
         return body.velocity.y;
@@ -66,8 +52,8 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("rope"))
         {
-            swingTarget = collision.gameObject.GetComponent<RopeController>().swingTarget;
-            ropeOffset = transform.position - swingTarget.position;
+            rope = collision.gameObject.GetComponent<RopeController>();
+            ropeOffset = transform.position - rope.swingTarget.position;
             isSwing = true;
             col.enabled = false;
         }
@@ -77,9 +63,10 @@ public class Player : MonoBehaviour
     {
         if (isSwing)
         {
-          transform.position = swingTarget.position + ropeOffset;
+          transform.position = rope.swingTarget.position + ropeOffset;
         }
     }
+
 
     public void Walk()
     {

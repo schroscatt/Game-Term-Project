@@ -1,4 +1,3 @@
-using Platformer.Mechanics;
 using UnityEngine;
 
 public class PlayerSwingingState : PlayerBaseState
@@ -26,7 +25,7 @@ public class PlayerSwingingState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (playerController.col.enabled)
+        if (playerController.IsGrounded())
         {
             stateMachine.ChangeState(stateMachine.IdleState);
         }

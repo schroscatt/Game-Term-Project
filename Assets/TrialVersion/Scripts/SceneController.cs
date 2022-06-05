@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
@@ -16,13 +11,14 @@ public class SceneController : MonoBehaviour
     public TMPro.TMP_Text tryText;
     public Canvas canvas;
 
-    private static int currentLevel;
+    private int _currentLevel;
 
     // Start is called before the first frame update
     void Awake()
     {
+        _currentLevel = 0;
         tryAgain.onClick.AddListener(LoadLevel);
-        nextLevel.onClick.AddListener(LoadLevel);
+        nextLevel.onClick.AddListener(LoadNextLevel);
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -34,12 +30,22 @@ public class SceneController : MonoBehaviour
 
     public void LoadLevel()
     {
+        AudioController.Instance.PlayLevelMusic();
         canvas.gameObject.SetActive(false);
-        SceneManager.LoadScene("First" + currentLevel);
+        SceneManager.LoadScene("First" + _currentLevel);
     }
+    
+    public void LoadNextLevel()
+    {
+        AudioController.Instance.PlayLevelMusic();
+        canvas.gameObject.SetActive(false);
+        SceneManager.LoadScene("First" + _currentLevel);
+    }
+
 
     public void LoadFailLevel()
     {
+        AudioController.Instance.PlayFailMusic();
         SceneManager.LoadScene("LevelPanel");
         canvas.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
@@ -51,7 +57,8 @@ public class SceneController : MonoBehaviour
     public void LoadWinLevel()
     {
         SceneManager.LoadScene("LevelPanel");
-        currentLevel += 1;
+        AudioController.Instance.PlayWinMusic();
+        _currentLevel += 1;
         canvas.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(false);
         tryText.gameObject.SetActive(false);

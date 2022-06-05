@@ -19,7 +19,7 @@ public class PlayerStateMachine : MonoBehaviour
         WalkState = new PlayerWalkingState(this, "walk");
         JumpingState = new PlayerJumpingState(this, "jump");
         SwingState = new PlayerSwingingState(this, "swing");
-        speed = 3f;
+        speed = 3.5f;
         PlayerController = GetComponent<Player>();
         Initialize(JumpingState);
     }
