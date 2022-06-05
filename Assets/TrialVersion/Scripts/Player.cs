@@ -41,9 +41,7 @@ public class Player : MonoBehaviour
 
     public bool IsGrounded()
     {
-        bool ret = Physics2D.IsTouching(col, platform_col);
-        Debug.Log(ret);
-        return ret;
+        return Physics2D.IsTouching(col, platform_col); ;
     }
 
     public void AddGravity(float force)
@@ -82,7 +80,7 @@ public class Player : MonoBehaviour
     public void Walk()
     {
         Vector2 vel = body.velocity;
-        vel.x = StateMachine.CurState.horizontalInput * StateMachine.speed;
+        vel.x=StateMachine.CurState.horizontalInput * StateMachine.speed;
 
         body.velocity = vel;
     }

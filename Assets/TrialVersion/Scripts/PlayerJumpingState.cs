@@ -28,13 +28,11 @@ public class PlayerJumpingState : PlayerBaseState
         base.LogicUpdate();
         if (playerController.IsGrounded())
         {
-            Debug.Log("change state");
             stateMachine.ChangeState(stateMachine.IdleState);
         }
         
         if (playerController.isSwing && stateMachine.CurState != stateMachine.SwingState)
         {
-            Debug.Log("change state");
             stateMachine.ChangeState(stateMachine.SwingState);
         }
 
@@ -43,19 +41,18 @@ public class PlayerJumpingState : PlayerBaseState
     public override void PhysxUpdate()
     {
         base.PhysxUpdate();
-        Debug.Log("physx");
         if (playerController.IsGrounded())
         {
             playerController.Jump();
-            /*if (playerController.GetVerticalVelocity() < 0) //falling, so accelerate faster for better gamefeel
+            if (playerController.GetVerticalVelocity() < 0) //falling, so accelerate faster for better gamefeel
             {
                 playerController.AddGravity(3f);
             }
             else
             {
-                
-            }*/
-            playerController.AddGravity(0.5f);
+
+                playerController.AddGravity(0.5f);
+            }
         }
     }    
 

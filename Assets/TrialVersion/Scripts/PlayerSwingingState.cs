@@ -28,7 +28,6 @@ public class PlayerSwingingState : PlayerBaseState
         base.LogicUpdate();
         if (playerController.col.enabled)
         {
-            Debug.Log("change state");
             stateMachine.ChangeState(stateMachine.IdleState);
         }
 
@@ -37,7 +36,6 @@ public class PlayerSwingingState : PlayerBaseState
     public override void PhysxUpdate()
     {
         base.PhysxUpdate();
-        Debug.Log("physx");
         playerController.Swing();
     }    
 
