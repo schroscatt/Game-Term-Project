@@ -31,7 +31,7 @@ public class PlayerJumpingState : PlayerBaseState
             stateMachine.ChangeState(stateMachine.IdleState);
         }
         
-        if (playerController.isSwing && stateMachine.CurState != stateMachine.SwingState)
+        if (playerController.isSwing)
         {
             stateMachine.ChangeState(stateMachine.SwingState);
         }

@@ -135,8 +135,6 @@ GameObject:
   - component: {fileID: 10828650}
   - component: {fileID: 10828651}
   - component: {fileID: 10828653}
-  - component: {fileID: 10828652}
-  - component: {fileID: 10828654}
   - component: {fileID: 10828655}
   m_Layer: 0
   m_Name: Square
@@ -224,33 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651f10cc19554b6b8381e5e1e7bda52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 1072574829}
---- !u!61 &10828652
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10828648}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  swingTarget: {fileID: 1499749616}
 --- !u!50 &10828653
 Rigidbody2D:
   serializedVersion: 4
@@ -272,24 +244,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!255 &10828654
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10828648}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 22.99, y: 8.99}
-  m_DampingRatio: 0
-  m_Frequency: 0
 --- !u!70 &10828655
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4701,11 +4655,9 @@ GameObject:
   - component: {fileID: 778888815}
   - component: {fileID: 778888814}
   - component: {fileID: 778888813}
-  - component: {fileID: 778888812}
-  - component: {fileID: 778888811}
   - component: {fileID: 778888816}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: rope1
   m_TagString: rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4726,50 +4678,6 @@ Transform:
   m_Father: {fileID: 1008885579}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!255 &778888811
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778888809}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 74.03, y: 8.99}
-  m_DampingRatio: 0
-  m_Frequency: 0
---- !u!61 &778888812
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778888809}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &778888813
 Rigidbody2D:
   serializedVersion: 4
@@ -4803,7 +4711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651f10cc19554b6b8381e5e1e7bda52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 1072574829}
+  swingTarget: {fileID: 177810077}
 --- !u!212 &778888815
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5988,7 +5896,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072574826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.73, y: 1.63, z: 0}
+  m_LocalPosition: {x: 66, y: 4.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1576018742}
@@ -6050,7 +5958,7 @@ MonoBehaviour:
   isSwing: 0
   col: {fileID: 0}
   platform_col: {fileID: 20685479}
-  swingTarget: {fileID: 1499749616}
+  swingTarget: {fileID: 0}
 --- !u!1 &1499749615
 GameObject:
   m_ObjectHideFlags: 0

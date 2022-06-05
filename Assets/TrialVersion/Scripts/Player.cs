@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         
         if (Input.GetButton("Swing"))
         {
+            transform.parent = null;
             isSwing = false;
             col.enabled = true;
         }
@@ -57,12 +58,15 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("collision" + collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("obstacle"))
         {
             SceneController.Instance.LoadFailLevel();
         }
-        if (collision.gameObject.CompareTag("rope") && StateMachine.CurState == StateMachine.JumpingState)
+        if (collision.gameObject.CompareTag("rope"))
         {
+            swingTarget = collision.gameObject.GetComponent<RopeController>().swingTarget;
             ropeOffset = transform.position - swingTarget.position;
             isSwing = true;
             col.enabled = false;
@@ -73,7 +77,7 @@ public class Player : MonoBehaviour
     {
         if (isSwing)
         {
-            transform.position = swingTarget.position + ropeOffset;
+          transform.position = swingTarget.position + ropeOffset;
         }
     }
 

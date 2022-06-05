@@ -20,7 +20,12 @@ public class PlayerIdleState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (Mathf.Abs(horizontalInput) > Mathf.Epsilon)
+        if (playerController.isSwing)
+        {
+            Debug.Log("change state");
+            stateMachine.ChangeState(stateMachine.SwingState);
+        }
+        else if (Mathf.Abs(horizontalInput) > Mathf.Epsilon)
         {
             stateMachine.ChangeState(_sm.WalkState);
         }

@@ -5,10 +5,9 @@ using UnityEngine;
 
 //If we have a stiff rope, such as a metal wire, then we need a simplified solution
 //this is also an accurate solution because a metal wire is not swinging as much as a rope made of a lighter material
-public class RopeController : MonoBehaviour 
+public class RopeController : MonoBehaviour
 {
-    //Objects that will interact with the rope
-    public Transform gameObject;
+	public Transform swingTarget;
     private bool isGoingLeft;
 
     void Start()

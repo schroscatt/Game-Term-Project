@@ -22,7 +22,11 @@ public class PlayerWalkingState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (Mathf.Abs(horizontalInput) < Mathf.Epsilon)
+        if (playerController.isSwing)
+        {
+            stateMachine.ChangeState(stateMachine.SwingState);
+        }
+        else if (Mathf.Abs(horizontalInput) < Mathf.Epsilon)
             stateMachine.ChangeState(_sm.IdleState);
         else if (verticalInput)
             stateMachine.ChangeState(_sm.JumpingState);
