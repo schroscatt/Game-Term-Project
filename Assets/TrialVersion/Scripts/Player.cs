@@ -2,8 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine.Utility;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -43,8 +46,9 @@ public class Player : MonoBehaviour
             isSwing = false;
             col.enabled = true;
         }
-
+        
     }
+    
     
 
     public void Jump()
@@ -77,7 +81,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("obstacle"))
         {
-            Debug.Log("yandın");
+            SceneController.Instance.LoadFailLevel();
         }
         if (collision.gameObject.CompareTag("rope") && StateMachine.CurState == StateMachine.JumpingState)
         {
