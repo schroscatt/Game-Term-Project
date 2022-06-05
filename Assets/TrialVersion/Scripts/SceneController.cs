@@ -21,6 +21,7 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        currentLevel = 0;
         tryAgain.onClick.AddListener(LoadLevel);
         nextLevel.onClick.AddListener(LoadLevel);
         if (Instance != null && Instance != this)
@@ -35,6 +36,7 @@ public class SceneController : MonoBehaviour
     public void LoadLevel()
     {
         canvas.gameObject.SetActive(false);
+        currentLevel += 1;
         SceneManager.LoadScene("First" + currentLevel);
     }
 
